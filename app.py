@@ -1,6 +1,7 @@
 import scipy.stats
 import streamlit as st
 import time
+import pandas as pd
 chart = st.line_chart([0.5])
 
 
@@ -17,7 +18,8 @@ def toss_coin(n):
         if r == 1:
             outcome_1_count += 1
         mean = outcome_1_count / outcome_no
-        chart.add_rows([mean])
+        chart.add_rows(pd.DataFrame({"Mean": [mean]}))
+        #chart.add_rows([mean])
         time.sleep(0.05)
 
     return mean
