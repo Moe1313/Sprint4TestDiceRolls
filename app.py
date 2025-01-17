@@ -2,8 +2,8 @@ import scipy.stats
 import streamlit as st
 import time
 import pandas as pd
-chart = st.line_chart([0.5])
-
+#chart = st.line_chart([0.5])
+chart = st.line_chart(pd.DataFrame({"Mean": [0.5]}))
 
 def toss_coin(n):
 
