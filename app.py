@@ -3,7 +3,9 @@ import streamlit as st
 import time
 import pandas as pd
 #chart = st.line_chart([0.5])
-chart = st.line_chart(pd.DataFrame({"Mean": [0.5]}))
+#chart = st.line_chart(pd.DataFrame({"Mean": [0.5]}))
+initial_df = pd.DataFrame({"Mean": [0.5]})
+chart = st.line_chart(initial_df.reset_index(drop=True))  # Reset index to avoid ArrowTypeError
 
 def toss_coin(n):
 
@@ -19,7 +21,8 @@ def toss_coin(n):
         if r == 1:
             outcome_1_count += 1
         mean = outcome_1_count / outcome_no
-        chart.add_rows(pd.DataFrame({"Mean": [mean]}))
+        new_row = pd.DataFrame({"Mean": [mean]})
+        chart.add_rows(new_row.reset_index(drop=True))  # Reset index again
         #chart.add_rows([mean])
         time.sleep(0.05)
 
